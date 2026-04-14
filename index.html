@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Anais Ascanio — AURA CABINET</title>
+<meta name="theme-color" content="#a07840">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Montserrat:wght@200;300;400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --cream: #f5f1ea; --surface: #faf7f2; --border: #ddd8cf; --border-light: #e8e2d8;
+  --gold: #a07840; --gold-light: #c49a5a; --gold-dim: #c8a96e; --gold-pale: #e8d5b0;
+  --ink: #0a0806; --ink-mid: #111111; --muted: #555555; --muted-light: #666666;
+}
+html, body { min-height:100vh; background:var(--cream); display:flex; align-items:flex-start; justify-content:center; font-family:'Montserrat',sans-serif; padding:8px; position:relative; overflow:hidden; }
+#particles { position:fixed; inset:0; pointer-events:none; z-index:0; }
+.scene { width:100%; max-width:100%; position:relative; z-index:2; }
+.card { position:relative; width:100%; background:var(--surface); border:1px solid var(--border); border-radius:2px; overflow:hidden; box-shadow:0 1px 0 rgba(255,255,255,0.9) inset,0 20px 60px rgba(80,60,20,0.12),0 4px 16px rgba(80,60,20,0.08); animation:cardIn 1.2s cubic-bezier(0.16,1,0.3,1) forwards; opacity:0; }
+@keyframes cardIn { from{opacity:0;transform:translateY(28px) scale(0.98)} to{opacity:1;transform:translateY(0) scale(1)} }
+.card::before { content:''; position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(90deg,transparent 0%,var(--gold-pale) 20%,var(--gold-dim) 40%,var(--gold) 50%,var(--gold-dim) 60%,var(--gold-pale) 80%,transparent 100%); z-index:10; }
+.card-header { padding:44px 44px 28px; border-bottom:1px solid var(--border-light); }
+.brand-mark { display:flex; align-items:center; gap:10px; margin-bottom:24px; animation:fadeUp 0.9s 0.3s cubic-bezier(0.16,1,0.3,1) forwards; opacity:0; }
+@keyframes fadeUp { from{opacity:0;transform:translateY(10px)} to{opacity:1;transform:translateY(0)} }
+.brand-diamond { width:5px; height:5px; background:var(--gold); transform:rotate(45deg); flex-shrink:0; }
+.brand-name { font-size:8.5px; font-weight:500; letter-spacing:0.38em; color:var(--gold); text-transform:uppercase; }
+.name-block { animation:fadeUp 0.9s 0.45s cubic-bezier(0.16,1,0.3,1) forwards; opacity:0; }
+.name-full { font-family:'Cormorant Garamond',serif; font-size:54px; font-weight:300; color:var(--ink); line-height:1.0; }
+.name-full em { font-style:italic; color:var(--gold); }
+.role-line { display:flex; align-items:center; gap:12px; margin-top:9px; }
+.role-text { font-size:9px; font-weight:300; letter-spacing:0.3em; color:var(--muted); text-transform:uppercase; }
+.role-rule { flex:1; height:1px; background:linear-gradient(90deg,var(--border),transparent); }
+.card-body { display:grid; grid-template-columns:1fr; }
+.contact-section { padding:28px 44px 32px; border-bottom:1px solid var(--border-light); animation:fadeUp 0.9s 0.6s cubic-bezier(0.16,1,0.3,1) forwards; opacity:0; }
+.section-label { font-size:7px; font-weight:500; letter-spacing:0.42em; color:var(--gold-dim); text-transform:uppercase; margin-bottom:18px; }
+.contact-item { display:flex; align-items:flex-start; gap:11px; margin-bottom:13px; }
+.contact-item:last-child { margin-bottom:0; }
+.ci-icon { margin-top:2px; flex-shrink:0; opacity:0.45; }
+.ci-icon svg { width:12px; height:12px; fill:var(--gold); display:block; }
+.ci-data { display:flex; flex-direction:column; gap:1px; }
+.ci-label { font-size:7px; font-weight:400; letter-spacing:0.26em; color:var(--muted-light); text-transform:uppercase; }
+.ci-value { font-size:13px; font-weight:300; color:var(--ink-mid); text-decoration:none; transition:color 0.2s; }
+.ci-value:hover { color:var(--gold); }
+.qr-section { display:flex; flex-direction:column; align-items:center; justify-content:center; gap:10px; padding:28px 22px; animation:fadeUp 0.9s 0.75s cubic-bezier(0.16,1,0.3,1) forwards; opacity:0; }
+.qr-frame { position:relative; padding:8px; background:white; border:1px solid var(--border-light); }
+.qr-frame::before,.qr-frame::after,.qr-frame .corner-tr,.qr-frame .corner-bl { content:''; position:absolute; width:9px; height:9px; border-color:var(--gold-dim); border-style:solid; }
+.qr-frame::before { top:-1px; left:-1px; border-width:1.5px 0 0 1.5px; }
+.qr-frame::after { bottom:-1px; right:-1px; border-width:0 1.5px 1.5px 0; }
+.qr-frame .corner-tr { top:-1px; right:-1px; border-width:1.5px 1.5px 0 0; }
+.qr-frame .corner-bl { bottom:-1px; left:-1px; border-width:0 0 1.5px 1.5px; }
+.qr-caption { font-size:7px; font-weight:400; letter-spacing:0.3em; color:var(--muted-light); text-transform:uppercase; text-align:center; }
+.card-footer { padding:16px 44px 20px; border-top:1px solid var(--border-light); display:flex; align-items:center; justify-content:space-between; animation:fadeUp 0.9s 0.9s cubic-bezier(0.16,1,0.3,1) forwards; opacity:0; position:relative; }
+.card-footer::after { content:''; position:absolute; bottom:0; left:0; right:0; height:1.5px; background:linear-gradient(90deg,transparent,var(--gold-pale) 30%,var(--gold-dim) 50%,var(--gold-pale) 70%,transparent); }
+.footer-tagline { font-family:'Cormorant Garamond',serif; font-size:13px; font-weight:300; font-style:italic; color:var(--muted); }
+.footer-badge { display:flex; align-items:center; gap:6px; }
+.badge-dot { width:4px; height:4px; background:var(--gold); border-radius:50%; animation:pulse 3s ease-in-out infinite; }
+@keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.4;transform:scale(0.75)} }
+.badge-text { font-size:7px; font-weight:400; letter-spacing:0.32em; color:var(--muted-light); text-transform:uppercase; }
+</style>
+</head>
+<body>
+<canvas id="particles"></canvas>
+<div class="scene">
+  <div class="card">
+    <div class="card-header">
+      <div class="brand-mark">
+        <div class="brand-diamond"></div>
+        <span class="brand-name">Aura Cabinet</span>
+      </div>
+      <div class="name-block">
+        <div class="name-full">Anais <em>Ascanio</em></div>
+        <div class="role-line">
+          <span class="role-text">Fundadora / CEO</span>
+          <div class="role-rule"></div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="contact-section">
+        <div class="section-label">Contacto</div>
+        <div class="contact-item">
+          <div class="ci-icon"><svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg></div>
+          <div class="ci-data">
+            <span class="ci-label">Telefono</span>
+            <a class="ci-value" href="tel:+34 643 917 257">+34 643 917 257</a>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="ci-icon"><svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg></div>
+          <div class="ci-data">
+            <span class="ci-label">Web</span>
+            <a class="ci-value" href="https://aura-cabinet.com" target="_blank">aura-cabinet.com</a>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="ci-icon"><svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg></div>
+          <div class="ci-data">
+            <span class="ci-label">Email</span>
+            <a class="ci-value" id="emailLink">private@aura-cabinet.com</a>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="ci-icon"><svg viewBox="0 0 24 24"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/></svg></div>
+          <div class="ci-data">
+            <span class="ci-label">LinkedIn</span>
+            <a class="ci-value" href="https://www.linkedin.com/in/aura-cabinet" target="_blank">aura-cabinet</a>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="ci-icon"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></div>
+          <div class="ci-data">
+            <span class="ci-label">Instagram</span>
+            <a class="ci-value" href="https://www.instagram.com/theaura.cabinet/" target="_blank">@theaura.cabinet</a>
+          </div>
+        </div>
+      </div>
+      <div class="qr-section">
+        <div class="qr-frame">
+          <div class="corner-tr"></div>
+          <div class="corner-bl"></div>
+          <img src="data:image/png;base64,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" width="130" height="130" style="display:block;">
+        </div>
+        <div class="qr-caption">Escanear</div>
+      </div>
+    </div>
+    <div class="card-footer">
+      <span class="footer-tagline">Reputacion · Visibilidad · Autoridad</span>
+      <div class="footer-badge">
+        <div class="badge-dot"></div>
+        <span class="badge-text">Posicionamiento</span>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+(function(){
+  var el = document.getElementById('emailLink');
+  var u = 'private';
+  var d = 'aura-cabinet.com';
+  var full = u + String.fromCharCode(64) + d;
+  el.href = 'mai' + 'lto:' + full;
+  el.textContent = full;
+})();
+var canvas = document.getElementById('particles');
+var ctx = canvas.getContext('2d');
+function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+resize();
+window.addEventListener('resize', resize);
+var GOLD_COLORS = [[160,120,64],[196,154,90],[200,169,110],[232,213,176],[180,140,80]];
+function Particle(init) { this.reset(init); }
+Particle.prototype.reset = function(init) {
+  this.x = Math.random() * canvas.width;
+  this.y = init ? Math.random() * canvas.height : canvas.height + 12;
+  this.r = Math.random() * 1.6 + 0.3;
+  this.vx = (Math.random() - 0.5) * 0.3;
+  this.vy = -(Math.random() * 0.45 + 0.12);
+  this.life = 0;
+  this.maxLife = Math.random() * 300 + 180;
+  this.col = GOLD_COLORS[Math.floor(Math.random() * GOLD_COLORS.length)];
+  this.phase = Math.random() * Math.PI * 2;
+  this.speed = 0.012 + Math.random() * 0.02;
+  this.shape = Math.random() < 0.2 ? 'diamond' : 'circle';
+};
+Particle.prototype.update = function() {
+  this.x += this.vx; this.y += this.vy; this.life++; this.phase += this.speed;
+  if (this.life > this.maxLife || this.y < -12) this.reset(false);
+};
+Particle.prototype.draw = function() {
+  var t = this.life / this.maxLife;
+  var env = t < 0.12 ? t/0.12 : t > 0.78 ? 1-(t-0.78)/0.22 : 1;
+  var a = env * (0.5 + 0.5 * Math.sin(this.phase));
+  var r = this.col[0], g = this.col[1], b = this.col[2];
+  ctx.save();
+  ctx.globalAlpha = a;
+  if (this.shape === 'diamond') {
+    var s = this.r * 2.4;
+    ctx.fillStyle = 'rgb(' + r + ',' + g + ',' + b + ')';
+    ctx.beginPath();
+    ctx.moveTo(this.x, this.y - s); ctx.lineTo(this.x + s, this.y);
+    ctx.lineTo(this.x, this.y + s); ctx.lineTo(this.x - s, this.y);
+    ctx.closePath(); ctx.fill();
+  } else {
+    var rad = this.r * 2.8;
+    var g2 = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, rad);
+    g2.addColorStop(0, 'rgba(' + r + ',' + g + ',' + b + ',' + a + ')');
+    g2.addColorStop(0.5, 'rgba(' + r + ',' + g + ',' + b + ',' + (a*0.4) + ')');
+    g2.addColorStop(1, 'rgba(' + r + ',' + g + ',' + b + ',0)');
+    ctx.fillStyle = g2;
+    ctx.beginPath(); ctx.arc(this.x, this.y, rad, 0, Math.PI * 2); ctx.fill();
+  }
+  ctx.restore();
+};
+var particles = [];
+for (var i = 0; i < 40; i++) particles.push(new Particle(true));
+(function loop() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  for (var i = 0; i < particles.length; i++) { particles[i].update(); particles[i].draw(); }
+  requestAnimationFrame(loop);
+})();
+</script>
+</body>
+</html>
